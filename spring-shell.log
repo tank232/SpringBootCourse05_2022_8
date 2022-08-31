@@ -1,0 +1,18 @@
+1661944498972:add_author a
+1661944511562:show_authors
+1661944526179:add_book t 1 1
+1661944533309:show_books
+1661944548206:add_comment t a c
+1661944556181:show_comment t
+1661944635123:set_author_to_book t a
+1661944659546:show_authors
+1661944737952:show_books
+1661944779746:show_authors
+1661945302950:add_book t 1 1
+1661945319901:add_comment t a c
+1661945334619:show_books
+1661945352605:add_author
+1661945356655:add_author a
+1661945365167:show_authors
+1661945568652:set_author_to_book t a
+1661945576750:show_authors
