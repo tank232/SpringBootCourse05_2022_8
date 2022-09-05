@@ -74,6 +74,26 @@ public class DefinerCommand {
         );
     }
 
+    @ShellMethod("add genre")
+    public void add_genre(String bookTitle, String genre) {
+        bookRepository.findBooksByTitle(bookTitle).stream().findFirst().ifPresentOrElse(
+                book -> {
+                    book.getGenres().add(genre);
+                    bookRepository.save(book);
+                },
+                () -> log.error("You mast init book first")
+        );
+    }
+
+
+    @ShellMethod("show genre")
+    public void show_genre(String bookTitle) {
+        bookRepository.findBooksByTitle(bookTitle).stream().findFirst().ifPresentOrElse(
+                book -> log.info(MessageFormat.format("Book.comment:{0}", book.getGenres().stream().collect(Collectors.joining(",")))),
+                () -> log.error("You mast init book & comment")
+        );
+    }
+
 
     @ShellMethod("set author for new book")
     public void set_author_to_book(String bookTitle, String authorName) {

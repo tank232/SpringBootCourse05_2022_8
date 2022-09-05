@@ -27,6 +27,7 @@ public class Book {
     private String isbn;
     private short edition = 1;
     private List<Comment> comments = new ArrayList<>();
+    private List<String> genres= new ArrayList<>();
 
     @Override
     public String toString() {
@@ -36,6 +37,7 @@ public class Book {
                 ", isbn='" + isbn + '\'' +
                 ", edition=" + edition +
                 ", comments=" + comments +
+                ", genres=" + genres +
                 '}';
     }
 }
