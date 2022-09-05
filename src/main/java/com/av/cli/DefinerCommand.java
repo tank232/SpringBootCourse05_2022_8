@@ -10,6 +10,7 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 
 import java.text.MessageFormat;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @ShellComponent
@@ -31,6 +32,7 @@ public class DefinerCommand {
         authorRepository.save(new Author(name));
     }
 
+
     @ShellMethod("show authors")
     public void show_authors() {
         authorRepository.findAll().forEach(a -> log.info(MessageFormat.format("author:{0}", a)));
@@ -50,6 +52,9 @@ public class DefinerCommand {
     public void show_books() {
         bookRepository.findAll().forEach(book -> log.info(MessageFormat.format("Book:{0}", book)));
     }
+
+
+
 
     @ShellMethod("add comment")
     public void add_comment(String bookTitle, String commentAuthor, String commentData) {
@@ -95,7 +100,7 @@ public class DefinerCommand {
     }
 
 
-    @ShellMethod("set author for new book")
+    @ShellMethod("set author for  book")
     public void set_author_to_book(String bookTitle, String authorName) {
         bookRepository.findBooksByTitle(bookTitle).stream().findFirst().ifPresentOrElse(
                 book -> {
@@ -104,6 +109,8 @@ public class DefinerCommand {
                             {
                                 author.getBooks().add(book);
                                 authorRepository.save(author);
+                                book.getAuthors().add(author);
+                                bookRepository.save(book);
                             },
                             () -> log.error("You mast init new author first")
                     );
@@ -113,5 +120,25 @@ public class DefinerCommand {
         );
     }
 
+
+    @ShellMethod("delete author for  book")
+    public void delete_author_to_book(String bookTitle, String authorName) {
+        bookRepository.findBooksByTitle(bookTitle).stream().findFirst().ifPresentOrElse(
+                book -> {
+                    authorRepository.findAuthorByName(authorName).ifPresentOrElse(
+                            author ->
+                            {
+                                author.getBooks().remove(book);
+                                authorRepository.save(author);
+                                book.getAuthors().remove(author);
+                                bookRepository.save(book);
+                            },
+                            () -> log.error("You mast init new author first")
+                    );
+                },
+                () -> log.error("You mast init new book first")
+
+        );
+    }
 
 }
