@@ -16,3 +16,7 @@
 1661945365167:show_authors
 1661945568652:set_author_to_book t a
 1661945576750:show_authors
+1662622281859:update_author_name fake2 fake3
+1662622286567:show_authors
+1662622356999:update_author_name fake3 fake4
+1662622361361:show_authors

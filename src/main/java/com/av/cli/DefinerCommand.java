@@ -38,6 +38,17 @@ public class DefinerCommand {
         authorRepository.findAll().forEach(a -> log.info(MessageFormat.format("author:{0}", a)));
     }
 
+    @ShellMethod("update author name")
+    public void update_author_name(String oldName, String newName) {
+        authorRepository.findAuthorByName(oldName).ifPresent(
+                oldAuthor->
+                {
+                    authorRepository.delete(oldAuthor);
+                    oldAuthor.setName(newName);
+                    authorRepository.save(oldAuthor);
+                }
+        );
+    }
 
     @ShellMethod("create new book")
     public void add_book(String title, short edition, String isbn) {
