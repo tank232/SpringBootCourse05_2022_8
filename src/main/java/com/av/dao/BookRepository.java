@@ -4,7 +4,6 @@ import com.av.domain.Book;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface BookRepository extends MongoRepository<Book, String> {
 
@@ -12,6 +11,8 @@ public interface BookRepository extends MongoRepository<Book, String> {
 
 
     List<Book> findBooksByTitle(String title);
+
+    List<Book> findBooksByAuthors(String author);
 
 
 }

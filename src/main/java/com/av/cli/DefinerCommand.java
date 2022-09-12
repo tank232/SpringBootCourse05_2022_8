@@ -41,11 +41,19 @@ public class DefinerCommand {
     @ShellMethod("update author name")
     public void update_author_name(String oldName, String newName) {
         authorRepository.findAuthorByName(oldName).ifPresent(
-                oldAuthor->
+                author->
                 {
-                    authorRepository.delete(oldAuthor);
-                    oldAuthor.setName(newName);
-                    authorRepository.save(oldAuthor);
+                    authorRepository.delete(author);
+                    List<Book> booksByAuthor = bookRepository.findBooksByAuthors(oldName);
+                    author.setName(newName);
+                    authorRepository.save(author);
+                    booksByAuthor.stream().forEach(
+                            book->{
+                                book.getAuthors().add(newName);
+                                book.getAuthors().remove(oldName);
+                                bookRepository.save(book);
+                            }
+                    );
                 }
         );
     }
@@ -120,7 +128,7 @@ public class DefinerCommand {
                             {
                                 author.getBooks().add(book);
                                 authorRepository.save(author);
-                                book.getAuthors().add(author);
+                                book.getAuthors().add(author.getName());
                                 bookRepository.save(book);
                             },
                             () -> log.error("You mast init new author first")
