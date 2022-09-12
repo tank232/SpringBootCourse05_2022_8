@@ -1,0 +1,44 @@
+1661944498972:add_author a
+1661944511562:show_authors
+1661944526179:add_book t 1 1
+1661944533309:show_books
+1661944548206:add_comment t a c
+1661944556181:show_comment t
+1661944635123:set_author_to_book t a
+1661944659546:show_authors
+1661944737952:show_books
+1661944779746:show_authors
+1661945302950:add_book t 1 1
+1661945319901:add_comment t a c
+1661945334619:show_books
+1661945352605:add_author
+1661945356655:add_author a
+1661945365167:show_authors
+1661945568652:set_author_to_book t a
+1661945576750:show_authors
+1662622281859:update_author_name fake2 fake3
+1662622286567:show_authors
+1662622356999:update_author_name fake3 fake4
+1662622361361:show_authors
+1663004537760:add_author a
+1663004554922:add_book t 1 1
+1663004574530:set_author_to_book t a
+1663004587866:update_author_name a b
+1663004597554:show_books
+1663004608466:show_authors
+1663004640856:add_author a
+1663004724142:update_author_name a c
+1663004747563:add_author a
+1663004756788:update_author_name a s
+1663004811244:update_author_name c d
+1663004844237:show_authors
+1663004882136:update_author_name fake2 fake1
+1663004892933:show_authors
+1663004929369:set_author_to_book t fake1
+1663004937324:show_books
+1663004959264:update_author_name fake1 fake2
+1663005005117:show_books
+1663005015983:show_authors
+1663005072624:add_author a
+1663005082424:update_author_name a w
+1663005101183:show_books
